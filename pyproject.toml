@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "ai-zotero-search"
+version = "0.1.0"
+description = "OpenAI-backed CLI search tool for zotero, written in python."
+authors = ["Robbie Capps <rocapp@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+langchain = "^0.1.19"
+langchain-community = "^0.0.38"
+langchain-openai = "^0.1.6"
+click = "^8.1.7"
+
+[tool.poetry.scripts]
+ai-zotero-search = 'ai_zotero_search.cli:cli'
+search-zotero = 'ai_zotero_search.cli:search'
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
