@@ -9,6 +9,8 @@ DEFAULT_ZOTERO_DB = os.getenv("DEFAULT_ZOTERO_DB", os.path.expanduser("~/.zotero
 
 
 def setup_zotero_db(database_uri: str = DEFAULT_ZOTERO_DB):
+    if not database_uri.startswith('sqlite:///'):
+        database_uri = 'sqlite:///' + os.path.abspath(database_uri)
     db = SQLDatabase.from_uri(database_uri)
     return db
 
@@ -26,9 +28,8 @@ def cli():
 
 
 @cli.command()
-@click.argument(
-    "query",
-    str,
+@click.option(
+    "-q", "--query", type=str,
     default="Search for any entries in the database that reference 'diabetes'."
 )
 def search(query: str):
